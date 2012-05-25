@@ -1,30 +1,31 @@
-	<div id="categorias">
-		<?
-		$categorias = bwProdutos::getInstance()->findCategoriaByIdpai(0);
-		?>
-		<div class="campo block">
-			<span>Categoria:</span>
-			<select class="w100 cat" name="categoria">
-				<? foreach($categorias as $k=>$c): ?>
-				<option value="<?= $c['id'] ?>" class="prod<?= $c['id'] ?>" rel="<?= $k; ?>"><?= str_repeat('&nbsp;&nbsp;&nbsp;', $c['nivel']); ?><?= $c['nome']; ?></option>
-				<? endforeach; ?>
-			</select>
-			<br class="clearfix"/>
-		</div>
-		
-		<div class="campo block">
-			<span></span>
-			<a href="javascript:void(0);" class="add">Adicionar categoria</a>
-			<br class="clearfix"/>
-		</div>
-		<br />
-		<? 
-		$r = Doctrine::getTable('ProdutoCategoriaRel')->findByIdproduto($i->id);
-		$v = ($r) ? $r->toArray() : array() ;	
-		?>
-		
-		<script type="text/javascript">
-			window.baseProdutosCategoriasOk = <?= json_encode($v)?>;
-			window.baseProdutosCategorias = <?= json_encode($categorias)?>;
-		</script>
-	</div>
+<?
+
+function montaMenu($idpai = 0, $categorias = array(), $i = -1, $n = '')
+{
+    $i++;
+    foreach ($categorias[$idpai] as $c) {
+        $nome = ($n == '') ? $c->nome : sprintf('%s > %s', $n, $c->nome);
+        echo sprintf('<option value="%s" class="cat%s" idpai="%s" nome_completo="%s" style="padding-left: %spx;">%s</option>', $c->id, $c->id, $c->idpai, $nome, $i * 10, $c->nome);
+        montaMenu($c->id, $categorias, $i, $nome);
+    }
+}
+?>
+
+<div id="categorias">
+    <div class="campo block">
+        <span>Categoria:</span>
+        <select class="w100" name="dados[idpai]">
+            <option value="0" idpai="0">-- Selecione --</option>
+            <? montaMenu(0, ProdutoCategoria::getAllIndexIdpai()); ?>
+        </select>	
+        <br class="clearfix"/>
+    </div>
+
+    <div class="campo block">
+        <span></span>
+        <a href="javascript:void(0);" class="add">Adicionar categoria</a>
+        <br class="clearfix"/>
+    </div>
+    <br />
+
+</div>

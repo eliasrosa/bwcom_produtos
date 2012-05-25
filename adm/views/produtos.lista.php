@@ -1,39 +1,55 @@
 <?
+
 defined('BW') or die("Acesso negado!");
 
-?>
+class bwGridProdutos extends bwGrid
+{
 
+    function col0($i)
+    {
+        return sprintf('<a href="%s">%s</a>', bwRouter::_('adm.php?com=produtos&view=cadastro&id=' . $i->id), $i->id);
+    }
 
-<?= bwAdm::createHtmlSubMenu(0); ?>
-<?= bwButton::redirect('Criar novo produto', 'adm.php?com=produtos&view=cadastro'); ?>
+    function col1($i)
+    {
+        return sprintf('<img src="%s" width="100" height="100" fit="outside" />', $i->bwImagem->getUrl());
+    }
 
-<table id="dataTable01">
-	<thead>
-		<tr>
-			<th class="tac" style="width: 50px;">ID</th>
-			<th class="tac" style="width: 90px;">Imagem</th>
-			<th>Nome</th>
-			<th class="tac" style="width: 85px;" nowrap="nowrap">Preço</th>
-			<th class="tac" style="width: 80px;">Quantidade</th>
-			<th class="tac" style="width: 120px;">Fabricante</th>
-			<th class="tac" style="width: 25px;">Status</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
+    function col2($i)
+    {
+        return sprintf('<a href="%s">%s</a>', bwRouter::_('adm.php?com=produtos&view=cadastro&id=' . $i->id), $i->nome);
+    }
 
-<script type="text/javascript">
-	$(document).ready(function() {
+    function col3($i)
+    {
+        return $i->referencia;
+    }
 
-		oTable = $('#dataTable01').dataTable($.extend($.dataTableSettings, {
-			
-		// Fixbug
-		aoColumnDefs: [{
-			sClass: "tac", aTargets: [0, 3, 4, 5, 6] 
-		}],
-			sAjaxSource: "<?= bwRouter::_('adm.php?com=produtos&task=produtoLista&' .bwRequest::getToken(). '=1') ?>"
-		}));
+    function __construct()
+    {
+        //
+        $this->orderColDefault = 1;
 
-	});
-</script>
+        //
+        $sql = Doctrine_Query::create()
+            ->from('Produto');
+
+        //
+        parent::__construct($sql);
+
+        //
+        $this->addCol('ID', 'id', 'tac', 50);
+        $this->addCol('Imagem', NULL, 'tac', 100);
+        $this->addCol('Nome', 'nome');
+        $this->addCol('Referencia', 'referencia');
+
+        //
+        $this->show();
+    }
+
+}
+
+echo bwAdm::createHtmlSubMenu(0);
+echo bwButton::redirect('Criar novo produto', 'adm.php?com=produtos&view=cadastro');
+
+new bwGridProdutos();

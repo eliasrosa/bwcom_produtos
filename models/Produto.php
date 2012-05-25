@@ -2,13 +2,14 @@
 
 class Produto extends bwRecord
 {
+
     var $labels = array(
         'nome' => 'Nome do produto',
         'referencia' => 'Referência',
         'descricao' => 'Descrição do produto',
         'destaque' => 'Destaque',
     );
-    
+
     public function setTableDefinition()
     {
         $this->setTableName('bw_produtos');
@@ -74,7 +75,7 @@ class Produto extends bwRecord
             'notnull' => false,
             'autoincrement' => false,
         ));
-        $this->hasColumn('metatagkey', 'string', 255, array(
+        $this->hasColumn('metatagkeywords', 'string', 255, array(
             'type' => 'string',
             'length' => 255,
             'fixed' => false,
@@ -91,7 +92,7 @@ class Produto extends bwRecord
             'primary' => false,
             'notnull' => false,
             'autoincrement' => false,
-        ));        
+        ));
     }
 
     public function setUp()
@@ -108,7 +109,27 @@ class Produto extends bwRecord
             'foreign' => 'idcategoria',
             'refClass' => 'ProdutoCategoriaRel'
         ));
-        
-        $this->setBwImagem('capas', 'capa');
+
+        $this->setBwImagem('produtos', 'capas');
     }
+
+    public function salvar($dados)
+    {
+        $categorias = (array) $dados['grupos'];
+        unset($dados['categorias']);
+        
+        $db = bwComponent::save(__CLASS__, $dados, 'id', array('Categorias' => $categorias));
+        $r = bwComponent::retorno($db);
+
+        return $r;
+    }
+
+    public function remover($dados)
+    {
+        $db = bwComponent::remover(__CLASS__, $dados);
+        $r = bwComponent::retorno($db);
+
+        return $r;
+    }
+
 }

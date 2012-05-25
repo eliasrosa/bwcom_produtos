@@ -1,7 +1,7 @@
 <?
 defined('BW') or die("Acesso negado!");
 
-echo bwAdm::createHtmlSubMenu(3);
+echo bwAdm::createHtmlSubMenu(1);
 ?>
 
 <table class="painel">

@@ -2,6 +2,7 @@
 
 class ProdutoCategoriaRel extends bwRecord
 {
+
     public function setTableDefinition()
     {
         $this->setTableName('bw_produtos_categorias_rel');
@@ -29,5 +30,5 @@ class ProdutoCategoriaRel extends bwRecord
     {
         parent::setUp();
     }
-    
+
 }
