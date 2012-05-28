@@ -18,5 +18,17 @@ $(function(){
     $('#categorias a.add').click(function(){
         var id = $('#categorias select').val();
         addCheckboxCat(id);
-    });  
+    });
+    
+    
+    var rel = eval('('+ $('#categorias a.add').attr('rel') +')');
+    $.each(rel, function(a, b){
+        addCheckboxCat(b);
+    });
+    
+    
+//    $('#categorias input:checkbox').live('change', function(){
+//        
+//    });
+    
 });

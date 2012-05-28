@@ -9,6 +9,11 @@ function montaMenu($idpai = 0, $categorias = array(), $i = -1, $n = '')
         montaMenu($c->id, $categorias, $i, $nome);
     }
 }
+
+$rel = array();
+foreach($i->Categorias as $c)
+    $rel[] = $c->id;
+
 ?>
 
 <div id="categorias">
@@ -23,7 +28,7 @@ function montaMenu($idpai = 0, $categorias = array(), $i = -1, $n = '')
 
     <div class="campo block">
         <span></span>
-        <a href="javascript:void(0);" class="add">Adicionar categoria</a>
+        <a href="javascript:void(0);" rel="[<?= join(',', $rel); ?>]" class="add">Adicionar categoria</a>
         <br class="clearfix"/>
     </div>
     <br />
