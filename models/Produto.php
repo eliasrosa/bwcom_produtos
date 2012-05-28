@@ -115,7 +115,7 @@ class Produto extends bwRecord
 
     public function salvar($dados)
     {
-        $categorias = (array) $dados['grupos'];
+        $categorias = (array) $dados['categorias'];
         unset($dados['categorias']);
         
         $db = bwComponent::save(__CLASS__, $dados, 'id', array('Categorias' => $categorias));
@@ -131,5 +131,5 @@ class Produto extends bwRecord
 
         return $r;
     }
-
+    
 }
