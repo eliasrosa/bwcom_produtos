@@ -41,7 +41,7 @@ class bwGridProdutos extends bwGrid
         $this->addCol('ID', 'id', 'tac', 50);
         $this->addCol('Imagem', NULL, 'tac', 100);
         $this->addCol('Nome', 'nome');
-        $this->addCol('Referencia', 'referencia');
+        $this->addCol('Referência', 'referencia');
 
         //
         $this->show();
