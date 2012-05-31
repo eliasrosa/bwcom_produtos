@@ -12,12 +12,12 @@ class bwGridProdutos extends bwGrid
 
     function col1($i)
     {
-        return sprintf('<img src="%s" width="100" height="100" fit="outside" />', $i->bwImagem->getUrl());
+        return sprintf('<img src="%s" width="100" height="100" />', $i->bwImagem->getUrl());
     }
 
     function col2($i)
     {
-        return sprintf('<a href="%s">%s</a>', bwRouter::_('adm.php?com=produtos&view=cadastro&id=' . $i->id), $i->nome);
+        return $i->nome;
     }
 
     function col3($i)
@@ -41,7 +41,7 @@ class bwGridProdutos extends bwGrid
         $this->addCol('ID', 'id', 'tac', 50);
         $this->addCol('Imagem', NULL, 'tac', 100);
         $this->addCol('Nome', 'nome');
-        $this->addCol('Referência', 'referencia');
+        $this->addCol('Referência', 'referencia', NULL, 200);
 
         //
         $this->show();
