@@ -30,13 +30,12 @@ $i = bwComponent::openById('ProdutoCategoria', $id);
                 $form->addH2('Imagem');
                 $form->addInputFileImg();
 
-                $form->addH2('SEO - Buscadores de sites');
                 $form->addSeo();
 
                 $form->addBottonSalvar('categoriaSalvar');
                 $form->addBottonRemover('categoriaRemover');
                 $form->show();
-                ?>		
+                ?>      
             </div>
         </td>
     </tr>

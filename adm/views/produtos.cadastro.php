@@ -24,7 +24,6 @@ $form->addInputFileImg();
 $form->addH2('Categorias relacionadas ao produto');
 $form->addCustonFile('produtos.categorias.php');
 
-$form->addH2('SEO - Buscadores de sites');
 $form->addSeo();
 
 $form->addBottonSalvar('produtoSalvar');
