@@ -145,18 +145,58 @@ class ProdutoCategoria extends bwRecord
         return $r;
     }
 
-    public function getAllIndexIdpai()
+    public function getAllIndexIdpai($status = NULL)
     {
         $dql = Doctrine_Query::create()
             ->from('ProdutoCategoria')
-            ->orderBy('ordem, idpai, nome')
-            ->execute();
+            ->orderBy('ordem, idpai, nome');
+
+        if (!is_null($status))
+            $dql->where('status = ?', $status);
 
         $r = array();
-        foreach ($dql as $i)
+        foreach ($dql->execute() as $i)
             $r[$i->idpai][] = $i;
 
         return $r;
+    }
+
+    public function createMenu($idpai)
+    {
+        $categorias = Doctrine_Query::create()
+            ->select('*')
+            ->addSelect('(SELECT COUNT(*) FROM ProdutoCategoria cc WHERE cc.idpai = c.id AND cc.status = 1) AS filhos')
+            ->from('ProdutoCategoria c')
+            ->where('c.status = 1 AND c.idpai = ?', $idpai)
+            ->orderBy('c.ordem, c.idpai, c.nome')
+            ->execute();
+
+        $m = '';
+        if ($categorias) {
+
+            $m .= '<ul class="menu">';
+
+            foreach ($categorias as $c) {
+
+                $submenu = '';
+                if ($c->filhos > 0) {
+                    $submenu = self::createMenu($c->id);
+                }
+
+                $class = sprintf('cat%s', $c->id);
+                if (!is_null($submenu)) {
+                    $class .= ' pai';
+                }
+
+                $m .= sprintf('<li class="%s"><a href="%s">%s</a>%s</li>', $class, $c->getUrl('/produtos/categoria'), $c->nome, $submenu);
+            }
+
+            $m .= "</ul>";
+
+            return $m;
+        }
+
+        return NULL;
     }
 
 }
