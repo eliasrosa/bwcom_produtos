@@ -5,11 +5,11 @@ $tituloPage = "Administração de Produtos";
 
 $menu = array(
 	'0' => array(
-		'url' => 'adm.php?com=produtos&view=lista',
+		'url' => '/adm/produtos/lista',
 		'tit' => 'Produtos'
 	),
 	'1' => array(
-		'url' => 'adm.php?com=produtos&sub=categorias&view=lista',
+		'url' => '/adm/produtos/categorias/lista',
 		'tit' => 'Categorias'
 	)
 );

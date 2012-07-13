@@ -7,7 +7,7 @@ class bwGridProdutos extends bwGrid
 
     function col0($i)
     {
-        return sprintf('<a href="%s">%s</a>', bwRouter::_('adm.php?com=produtos&view=cadastro&id=' . $i->id), $i->id);
+        return sprintf('<a href="%s">%s</a>', $i->getUrl('/produtos/cadastro'), $i->id);
     }
 
     function col1($i)
@@ -50,6 +50,6 @@ class bwGridProdutos extends bwGrid
 }
 
 echo bwAdm::createHtmlSubMenu(0);
-echo bwButton::redirect('Criar novo produto', 'adm.php?com=produtos&view=cadastro');
+echo bwButton::redirect('Criar novo produto', '/adm/produtos/cadastro');
 
 new bwGridProdutos();
