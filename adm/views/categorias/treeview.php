@@ -1,7 +1,7 @@
 <?
 
 defined('BW') or die("Acesso negado!");
-require('categorias.lista.helper.php');
+require('helper.php');
 
 bwHtml::js2css('/treeview/jquery.treeview', true);
 bwHtml::js('/cookie/cookie.js', true);
@@ -18,6 +18,6 @@ bwHtml::js('/cookie/cookie.js', true);
 
 <?
 
-echo bwButton::redirect('Criar nova categoria', 'adm.php?com=produtos&sub=categorias&view=cadastro');
+echo bwButton::redirect('Criar nova categoria', '/produtos/categorias/cadastro/0');
 
 new helperTreeCategorias();

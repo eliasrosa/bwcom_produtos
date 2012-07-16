@@ -50,6 +50,6 @@ class bwGridProdutos extends bwGrid
 }
 
 echo bwAdm::createHtmlSubMenu(0);
-echo bwButton::redirect('Criar novo produto', '/adm/produtos/cadastro');
+echo bwButton::redirect('Criar novo produto', '/produtos/cadastro/0');
 
 new bwGridProdutos();

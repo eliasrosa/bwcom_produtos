@@ -29,7 +29,7 @@ class helperTreeCategorias
                 $s = $this->montaMenu($c['id']);
                 $class = ($s == '') ? '' : ' pai';
 
-                $href = bwRouter::_("adm.php?com=produtos&sub=categorias&view=cadastro&id={$c['id']}");
+                $href = $c->getUrl("/produtos/categorias/cadastro");
 
                 $class = ($c['status']) ? '' : ' class="red"';
                 $c['nome'] = ($c['status']) ? $c['nome'] : "{$c['nome']} (Desativado)";

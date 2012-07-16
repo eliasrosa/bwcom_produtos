@@ -1,3 +1,3 @@
 <?
 defined('BW') or die("Acesso negado!");
-bwUtil::redirect('/adm/produtos/lista', true, true);
+bwUtil::redirect('/produtos/lista', true, true);
