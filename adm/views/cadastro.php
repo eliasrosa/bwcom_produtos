@@ -16,7 +16,7 @@ $form->addH2('Dados do produto');
 $form->addInputID();
 $form->addInput('nome');
 $form->addInput('referencia');
-$form->addTextArea('descricao');
+$form->addEditorHTML('descricao');
 $form->addBoolean('destaque');
 $form->addStatus();
 $form->addH2('Imagem principal');
