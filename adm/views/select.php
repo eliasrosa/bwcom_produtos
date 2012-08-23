@@ -3,17 +3,18 @@
 function montaMenu($idpai = 0, $categorias = array(), $i = -1, $n = '')
 {
     $i++;
-    foreach ($categorias[$idpai] as $c) {
-        $nome = ($n == '') ? $c->nome : sprintf('%s > %s', $n, $c->nome);
-        echo sprintf('<option value="%s" class="cat%s" idpai="%s" nome_completo="%s" style="padding-left: %spx;">%s</option>', $c->id, $c->id, $c->idpai, $nome, $i * 10, $c->nome);
-        montaMenu($c->id, $categorias, $i, $nome);
+    if (count($categorias[$idpai])) {
+        foreach ($categorias[$idpai] as $c) {
+            $nome = ($n == '') ? $c->nome : sprintf('%s > %s', $n, $c->nome);
+            echo sprintf('<option value="%s" class="cat%s" idpai="%s" nome_completo="%s" style="padding-left: %spx;">%s</option>', $c->id, $c->id, $c->idpai, $nome, $i * 10, $c->nome);
+            montaMenu($c->id, $categorias, $i, $nome);
+        }
     }
 }
 
 $rel = array();
-foreach($i->Categorias as $c)
+foreach ($i->Categorias as $c)
     $rel[] = $c->id;
-
 ?>
 
 <div id="categorias">
