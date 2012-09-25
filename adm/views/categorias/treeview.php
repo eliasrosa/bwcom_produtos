@@ -3,8 +3,8 @@
 defined('BW') or die("Acesso negado!");
 require('helper.php');
 
-bwHtml::js2css('/treeview/jquery.treeview', true);
-bwHtml::js('/cookie/cookie.js', true);
+bwHtml::js2css(BW_URL_JAVASCRIPTS . '/treeview/jquery.treeview');
+bwHtml::js(BW_URL_JAVASCRIPTS .'/cookie/cookie.js');
 ?>
 
 <script>
