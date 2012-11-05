@@ -19,11 +19,15 @@ $form->addInput('referencia');
 $form->addEditorHTML('descricao');
 $form->addBoolean('destaque');
 $form->addStatus();
+
 $form->addH2('Imagem principal');
-$form->addInputFileImg();
+$form->addInputFileImg('produto');
+
 $form->addH2('Categorias relacionadas ao produto');
 $form->addCustonFile(dirname(__FILE__) .DS. 'select.php');
+
 $form->addSeo();
+
 $form->addBottonSalvar('produtoSalvar');
 $form->addBottonRemover('produtoRemover');
 $form->show();

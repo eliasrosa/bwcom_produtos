@@ -28,7 +28,7 @@ $i = bwComponent::openById('ProdutoCategoria', $id);
                 $form->addStatus();
 
                 $form->addH2('Imagem');
-                $form->addInputFileImg();
+                $form->addInputFileImg('categoria');
 
                 $form->addSeo();
 

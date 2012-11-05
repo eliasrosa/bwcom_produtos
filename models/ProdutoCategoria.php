@@ -114,7 +114,7 @@ class ProdutoCategoria extends bwRecord
             'foreign' => 'id'
         ));
 
-        $this->setBwImagem('produtos', 'categorias');
+        $this->addImagem('categoria');
     }
 
     public function salvar($dados)

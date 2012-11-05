@@ -12,7 +12,7 @@ class bwGridProdutos extends bwGrid
 
     function col1($i)
     {
-        return sprintf('<img src="%s" width="100" height="100" />', $i->bwImagem->getUrl());
+        return sprintf('<img src="%s" />', $i->bwImagem->produto->resize(100, 100));
     }
 
     function col2($i)
@@ -23,6 +23,11 @@ class bwGridProdutos extends bwGrid
     function col3($i)
     {
         return $i->referencia;
+    }
+
+    function col4($i)
+    {
+        return '<a href="' .$i->bwGaleria->getAdmUrl('produto') . '">Galeria de imagens</a>';
     }
 
     function __construct()
@@ -42,7 +47,8 @@ class bwGridProdutos extends bwGrid
         $this->addCol('Imagem', NULL, 'tac', 100);
         $this->addCol('Nome', 'nome');
         $this->addCol('Referência', 'referencia', NULL, 200);
-
+        $this->addCol('Galeria de imagens', NULL, 'tac', 200);
+        
         //
         $this->show();
     }

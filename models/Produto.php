@@ -110,7 +110,8 @@ class Produto extends bwRecord
             'refClass' => 'ProdutoCategoriaRel'
         ));
 
-        $this->setBwImagem('produtos', 'capas');
+        $this->addImagem('produto');
+        $this->addGaleria('produto');
     }
 
     public function salvar($dados)
