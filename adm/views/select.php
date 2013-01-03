@@ -5,7 +5,7 @@ function montaMenu($idpai = 0, $categorias = array(), $i = -1, $n = '')
     $i++;
     if (count($categorias[$idpai])) {
         foreach ($categorias[$idpai] as $c) {
-            $nome = ($n == '') ? $c->nome : sprintf('%s > %s', $n, $c->nome);
+            $nome = str_replace('"', '&quot;', ($n == '') ? $c->nome : sprintf('%s > %s', $n, $c->nome));
             echo sprintf('<option value="%s" class="cat%s" idpai="%s" nome_completo="%s" style="padding-left: %spx;">%s</option>', $c->id, $c->id, $c->idpai, $nome, $i * 10, $c->nome);
             montaMenu($c->id, $categorias, $i, $nome);
         }
